@@ -163,6 +163,7 @@ export class StaffsController {
       },
     },
   })
+  @UseGuards(JwtAuthGuard) 
   async getAllStaff(
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 10,
