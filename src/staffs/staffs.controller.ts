@@ -74,8 +74,8 @@ export class StaffsController {
       },  // Example response data
     },
   })
-  @UsePipes(ValidationPipe)  // Automatically validate incoming DTO
   addStaff(@Body() createStaffDto: CreateStaffDto) {
+    console.log(createStaffDto);
     return this.staffService.create(createStaffDto);  // Call the staff service to create a new staff member
   }
 
