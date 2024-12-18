@@ -1,6 +1,5 @@
 import { IsOptional, IsString, IsEmail, IsEnum, IsPhoneNumber } from 'class-validator';
-import { AccountRight, IsActive } from '../../enums/staff.enum';
-import { Role } from '../../enums/role.enum';
+import { Role, IsActive } from '../../enums/role.enum';
 export class UpdateStaffDto {
   @IsOptional()
   @IsString()
@@ -27,16 +26,14 @@ export class UpdateStaffDto {
   email?: string;
 
   @IsOptional()
-  @IsPhoneNumber()
   business_phone?: string;
 
   @IsOptional()
-  @IsPhoneNumber()
   cell_phone?: string;
 
   @IsOptional()
-  @IsEnum(AccountRight)
-  account_right: AccountRight;
+  @IsEnum(Role)
+  account_right: Role;
 
   @IsOptional()
   @IsEnum(IsActive)  

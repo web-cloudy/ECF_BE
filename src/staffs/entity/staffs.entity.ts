@@ -1,5 +1,3 @@
-import { AccountRight, IsActive } from '../../enums/staff.enum';
-import { Role } from '../../enums/role.enum';
 import {
   Column,
   Entity,
@@ -8,6 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Role, IsActive } from '../../enums/role.enum';
 @Entity()
 export class Staff {
   @PrimaryGeneratedColumn()
@@ -37,7 +36,7 @@ export class Staff {
   @Column({ nullable: false })
   cell_phone: string;
 
-  @Column({ type: 'enum', enum: AccountRight, default: AccountRight.MANAGER })
+  @Column({ type: 'enum', enum: Role, default: Role.MANAGER })
   account_right: string;
 
   @Column({ type: 'enum', enum: IsActive , default: IsActive.NO })
