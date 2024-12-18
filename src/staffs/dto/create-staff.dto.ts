@@ -1,6 +1,5 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString, IsPhoneNumber } from 'class-validator';
-import { AccountRight, IsActive } from '../../enums/staff.enum';
-import { Role } from '../../enums/role.enum';
+import { Role, IsActive } from '../../enums/role.enum';
 export class CreateStaffDto {
   @IsNotEmpty()
   @IsString()
@@ -23,15 +22,13 @@ export class CreateStaffDto {
   email: string;
 
   @IsNotEmpty()
-  @IsPhoneNumber()
   business_phone: string;
 
   @IsNotEmpty()
-  @IsPhoneNumber()
   cell_phone: string;
 
-  @IsEnum(AccountRight)
-  account_right: AccountRight;
+  @IsEnum(Role)
+  account_right: Role;
 
   @IsEnum(IsActive)  // Correct usage of IsActive enum as a type
   is_active: IsActive;
