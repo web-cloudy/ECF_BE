@@ -74,13 +74,8 @@ export class StaffsController {
       },  // Example response data
     },
   })
-<<<<<<< HEAD
-  @UsePipes(ValidationPipe)  // Automatically validate incoming DTO
-  addStaff(@Body() createStaffDto: CreateStaffDto) {
-=======
   addStaff(@Body() createStaffDto: CreateStaffDto) {
     console.log(createStaffDto);
->>>>>>> 43dd74f0f963e49cd9d50d1832e076de55a762a7
     return this.staffService.create(createStaffDto);  // Call the staff service to create a new staff member
   }
 
@@ -168,10 +163,7 @@ export class StaffsController {
       },
     },
   })
-<<<<<<< HEAD
   @UseGuards(JwtAuthGuard) 
-=======
->>>>>>> 43dd74f0f963e49cd9d50d1832e076de55a762a7
   async getAllStaff(
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 10,
