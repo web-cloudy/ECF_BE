@@ -2,12 +2,15 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { RolesGuard } from './auth/guards/roles.guard';
-
+import * as cookieParser from 'cookie-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
+  app.enableCors({
+    origin: 'http://localhost:3000', 
+    credentials: true, 
+  });
   app.setGlobalPrefix("api");
-
+  app.use(cookieParser());
   const config = new DocumentBuilder()
     .setTitle('Express Capital Financing Software API Documentation')
     .setDescription('The ECF API description')
