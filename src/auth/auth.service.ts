@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { LoginUserDto } from 'src/users/dto/login-user.dto';
+import { jwtConstants } from '../constants/constants';
 
 @Injectable()
 export class AuthService {
@@ -21,10 +22,11 @@ export class AuthService {
     }
     try {
       const payload = { email: validUser.email, sub: validUser.id, role: validUser.role };
-      return {
-        ...payload,
-        token: this.jwtService.sign(payload),
-      };
+      const token = this.jwtService.sign(payload, {
+        secret: jwtConstants.secret, 
+        expiresIn: '1h',
+      });
+      return { token, payload };
     } catch (error) {
       throw new Error(`Error logging in ${error} user ${error.message}`);
     }
