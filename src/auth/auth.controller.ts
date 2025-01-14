@@ -10,7 +10,7 @@ import {
 import { ApiOperation } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
-import { LoginUserDto } from 'src/users/dto/login-user.dto';
+import { LoginUserDto } from '../users/dto/login-user.dto';
 import { Response } from 'express';
 
 @Controller('auth')
