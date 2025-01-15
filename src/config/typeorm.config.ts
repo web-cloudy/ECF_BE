@@ -30,7 +30,9 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   password: 'EcfLos1453!!',
   database: 'postgres',
   extra: {
-    ssl: true,
+    ssl: { 
+      rejectUnauthorized: false, // For self-signed certificates, set this to true for production
+    }
   },
   entities: [join(__dirname, '../', '**', '*.entity.{ts,js}')],
   synchronize: true,
