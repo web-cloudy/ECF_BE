@@ -10,6 +10,7 @@ import { join } from 'path';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'swagger-static'),
+      serveRoot: '/api'
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
     UsersModule,
