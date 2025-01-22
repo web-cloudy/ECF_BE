@@ -24,16 +24,11 @@ export const getDatabaseDataSourceOptions = ({
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
-  host: 'ecf.c56eo0o2s8n5.us-east-1.rds.amazonaws.com',
+  host: 'localhost',
   port: 5432,
   username: 'postgres',
-  password: 'EcfLos1453!!',
-  database: 'postgres',
-  extra: {
-    ssl: { 
-      rejectUnauthorized: false, // For self-signed certificates, set this to true for production
-    }
-  },
+  password: 'polito1230',
+  database: 'ecf',
   entities: [join(__dirname, '../', '**', '*.entity.{ts,js}')],
   synchronize: true,
 };
