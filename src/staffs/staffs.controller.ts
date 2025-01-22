@@ -27,86 +27,19 @@ export class StaffsController {
 
 
   @Post('/addOne')  // New endpoint for adding staff
-  @UseGuards(JwtAuthGuard)
-  @ApiOperation({
-    summary: 'Add a new staff member',
-  })
-  @ApiBody({
-    description: 'Staff data for creating a new staff member',
-    type: CreateStaffDto,  // Reference the DTO here
-    examples: {
-      'application/json': {
-        value: {
-          name: 'John Doe',
-          title: 'Processor',
-          company: 'PL_FINANCE',
-          group: 'N/A',
-          role: 'Developer',
-          email: 'john.doe@example.com',
-          business_phone: '+1 234 567 8901 (USA)',
-          cell_phone: '+1 234 567 8901 (USA)',
-          account_right: 'Manager',
-          is_active: 'Y',
-          remark: 'Senior Developer',
-        },  // Example request data
-      },
-    },
-  })
   @ApiResponse({
     status: 201,
     description: 'The staff member has been successfully created.',
-    schema: {
-      example: {
-        id: 1,
-        name: 'John Doe',
-        title: 'Processor',
-        company: 'PL_FINANCE',
-        group: 'N/A',
-        role: 'Developer',
-        email: 'john.doe@example.com',
-        business_phone: '+1 234 567 8901 (USA)',
-        cell_phone: '+1 234 567 8901 (USA)',
-        account_right: 'Manager',
-        is_active: 'Y',
-        remark: 'Senior Developer',
-        createdAt: '2024-12-08T12:00:00.000Z',
-        updatedAt: '2024-12-08T12:00:00.000Z',
-      },  // Example response data
-    },
   })
   addStaff(@Body() createStaffDto: CreateStaffDto) {
-    console.log(createStaffDto);
     return this.staffService.create(createStaffDto);  // Call the staff service to create a new staff member
   }
 
   @Get('/:id')
-  @ApiOperation({
-    summary: 'Get a staff member by ID',
-  })
   @ApiParam({
     name: 'id',
     description: 'The unique identifier of the staff member',
     example: 1,
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'The staff member has been successfully retrieved.',
-    schema: {
-      example: {
-        id: 1,
-        name: 'John Doe',
-        title: 'Processor',
-        company: 'PL_FINANCE',
-        group: 'N/A',
-        role: 'Developer',
-        email: 'john.doe@example.com',
-        business_phone: '+1 234 567 8901 (USA)',
-        cell_phone: '+1 234 567 8901 (USA)',
-        account_right: 'Manager',
-        is_active: 'Y',
-        remark: 'Senior Developer',
-      },
-    },
   })
   @ApiResponse({
     status: 404,
@@ -121,9 +54,6 @@ export class StaffsController {
   }
 
   @Get('/')
-  @ApiOperation({
-    summary: 'Get a paginated list of all staff members',
-  })
   @ApiQuery({
     name: 'page',
     description: 'Page number',
@@ -139,31 +69,7 @@ export class StaffsController {
   @ApiResponse({
     status: 200,
     description: 'Paginated list of staff members successfully retrieved.',
-    schema: {
-      example: {
-        data: [
-          {
-            id: 1,
-            name: 'John Doe',
-            title: 'Processor',
-            company: 'PL_FINANCE',
-            group: 'N/A',
-            role: 'Developer',
-            email: 'john.doe@example.com',
-            business_phone: '+1 234 567 890 (USA)',
-            cell_phone: '+1 234 567 890 (USA)',
-            account_right: 'Manager',
-            is_active: 'Y',
-            remark: 'Senior Developer',
-          },
-        ],
-        total: 50,
-        page: 1,
-        limit: 10,
-      },
-    },
   })
-  @UseGuards(JwtAuthGuard) 
   async getAllStaff(
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 10,
@@ -231,7 +137,6 @@ export class StaffsController {
     status: 404,
     description: 'Staff member not found.',
   })
-  @UsePipes(ValidationPipe) // Automatically validate incoming DTO
   async updateStaff(
     @Param('id') id: number,
     @Body() updateStaffDto: UpdateStaffDto,

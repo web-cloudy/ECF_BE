@@ -27,7 +27,7 @@ export class AuthController {
     @Body() loginData: LoginUserDto,
     @Res({ passthrough: true }) res: Response, 
   ): Promise<any> {
-    const { token, payload } = await this.authService.login(loginData);
+    const { token, sub, role } = await this.authService.login(loginData);
 
     res.cookie('auth_token', token, {
       httpOnly: true,
@@ -38,7 +38,7 @@ export class AuthController {
 
     return {
       message: 'Login successful',
-      user: { id: payload.sub, role: payload.role }, 
+      user: { id: sub, role: role, token }, 
     };
   }
 

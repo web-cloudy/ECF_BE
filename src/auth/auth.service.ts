@@ -26,7 +26,10 @@ export class AuthService {
         secret: jwtConstants.secret, 
         expiresIn: '1h',
       });
-      return { token, payload };
+      return {
+        ...payload,
+        token: token
+      };
     } catch (error) {
       throw new Error(`Error logging in ${error} user ${error.message}`);
     }
